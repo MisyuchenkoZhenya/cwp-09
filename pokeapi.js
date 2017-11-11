@@ -19,7 +19,7 @@ axios.get('http://pokeapi.co/api/v2/pokemon/42')
 let poke_array = []
 for (var i = 0; i < 3; ++i) {
   poke_array.push(
-    axios.get(`https://pokeapi.co/api/v2/pokemon/?limit=10&offset=${i}0`)
+    axios.get(`https://pokeapi.co/api/v2/pokemon?limit=10&offset=${i}0`)
     .then((response) => { 
       return response.data.results;
     })
@@ -56,4 +56,21 @@ Promise.any([
 });
 
 /*      Task 1.4      */
+/*
+Promise.props({
+  "pokemon": axios.get(`https://pokeapi.co/api/v2/pokemon?limit=10`),
+  "item": axios.get(`https://pokeapi.co/api/v2/item?limit=10`),
+  "location": axios.get(`https://pokeapi.co/api/v2/location?limit=10`),
+})
+.then((response) => {
+  Object.keys(response).forEach((key) => {
+    response[key].data.results.forEach((obj, counter) => {
+      console.log(`${key}_${counter + 1}: ${obj.name}`);
+    });
+  });
+})
+.catch((error) => {
+    console.log(error);
+});
 
+/*      Task 1.4      */
