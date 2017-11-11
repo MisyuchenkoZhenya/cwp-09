@@ -44,15 +44,15 @@ Promise.all(poke_array)
 /*      Task 1.3      */
 /*
 Promise.any([
-  axios.get(`https://pokeapi.co/api/v2/pokemon/1`),
-  axios.get(`https://pokeapi.co/api/v2/pokemon/4`),
-  axios.get(`https://pokeapi.co/api/v2/pokemon/7`)
-])
-.then((response) => {
-  console.log(`id-${response.data.id}: ${response.data.name}`);
-})
-.catch((error) => {
-    console.log(error);
+    axios.get(`https://pokeapi.co/api/v2/pokemon/1`),
+    axios.get(`https://pokeapi.co/api/v2/pokemon/4`),
+    axios.get(`https://pokeapi.co/api/v2/pokemon/7`)
+  ])
+  .then((response) => {
+    console.log(`id-${response.data.id}: ${response.data.name}`);
+  })
+  .catch((error) => {
+      console.log(error);
 });
 
 /*      Task 1.4      */
@@ -73,4 +73,23 @@ Promise.props({
     console.log(error);
 });
 
-/*      Task 1.4      */
+/*      Task 1.5      */
+/*
+let berries = [];
+for(let i = 0; i < 4; i++){
+  berries.push(axios.get(`https://pokeapi.co/api/v2/berry/${i + 1}`));  
+}
+
+Promise.map(berries, (berry) => {
+    return berry.data;
+  })
+  .then((response) => {
+    response.forEach((obj, counter) => {
+      console.log(`Berry_${counter + 1}: ${obj.name}(${obj.size})`);
+    });
+  })
+  .catch((error) => {
+    console.log(error);
+});
+
+/**/
